@@ -21,12 +21,20 @@
         background-color: #ffffff50;
       }
       .maneppe_logo {
+        position: relative;
         width: 100%;
       }
-      .maneppe_logo img {
+      .maneppe_logo .maneppe_logoImage {
         width: 100%;
         height: 340px;
         object-fit:contain;
+      }
+      .maneppe_logo .maneppe_logoTail {
+        position: absolute;
+        width: auto;
+        top: 50%;
+        right: 0;
+
       }
       .maneppe_content {
         width: 100%;
@@ -216,9 +224,6 @@
           .maneppe_hamburger_menu_content ul {
             list-style: none;
           }
-          .maneppe_hamburger_menu_content ul  {
-
-          }
           .maneppe_hamburger_menu_content ul li a {
             display: block;
             width: 100%;
@@ -230,7 +235,19 @@
       </nav>
       <div class="maneppe_spacer"></div>
       <div class="maneppe_content maneppe_logo">
-        <img src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/eyecatch.png" width="865" height="340" alt="webサイト、マネッペのロゴ" />
+        <img
+          class="maneppe_logoImage"
+          src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/eyecatch.png" width="865"
+          height="340"
+          alt="webサイト、マネッペのロゴ"
+        />
+        <!-- <img
+          class="maneppe_logoTail"
+          src="./images/Tail.webp"
+          width="135"
+          height="115"
+          alt="webサイト、マネッペのロゴの尻尾"
+        /> -->
       </div>
       <div class="maneppe_spacer"></div>
       <!-- <div class="maneppe_spacer"><hr class="maneppe_hr"></div> -->
@@ -376,27 +393,39 @@
         </h2>
         <div class="maneppe_content_inner">
           <ul class="maneppe_fadeInList_ul">
-            <li class="maneppe_fadeInList_content" style="transition-delay: 0;">寺田 伊吹<span class="fa-solid fa-comment-dots"></span>
+            <li class="maneppe_fadeInList_content" style="transition-delay: 0;">寺田 伊吹<span class="fa-solid fa-comment-dots" data-member="0"></span>
               プロダクトオーナー、イラスト
             </li>
-            <li class="maneppe_fadeInList_content" style="transition-delay: 0.2s;">井上 奈々<span class="fa-solid fa-comment-dots"></span>
+            <li class="maneppe_fadeInList_content" style="transition-delay: 0.2s;">井上 奈々<span class="fa-solid fa-comment-dots"  data-member="1"></span>
               プロジェクトマネージャー
             </li>
-            <li class="maneppe_fadeInList_content" style="transition-delay: 0.4s;">赤松 響　<span class="fa-solid fa-comment-dots"></span>
+            <li class="maneppe_fadeInList_content" style="transition-delay: 0.4s;">赤松 響　<span class="fa-solid fa-comment-dots"  data-member="2"></span>
               プログラマ
             </li>
-            <li class="maneppe_fadeInList_content" style="transition-delay: 0.6s;">市川 穂美<span class="fa-solid fa-comment-dots"></span>
+            <li class="maneppe_fadeInList_content" style="transition-delay: 0.6s;">市川 穂美<span class="fa-solid fa-comment-dots"  data-member="3"></span>
               イラスト、プログラマ
             </li>
-            <li class="maneppe_fadeInList_content" style="transition-delay: 0.8s;">岡村 圭祐<span class="fa-solid fa-comment-dots"></span>
+            <li class="maneppe_fadeInList_content" style="transition-delay: 0.8s;">岡村 圭祐<span class="fa-solid fa-comment-dots"  data-member="4"></span>
               発表、プログラマ
             </li>
-            <li class="maneppe_fadeInList_content" style="transition-delay: 1.0s;">越智 悠翔<span class="fa-solid fa-comment-dots"></span>
+            <li class="maneppe_fadeInList_content" style="transition-delay: 1.0s;">越智 悠翔<span class="fa-solid fa-comment-dots"  data-member="5"></span>
               プログラマ
             </li>
           </ul>
+          <dialog
+            id="meneppe_member_dialog"
+            class="meneppe_member_dialog"
+          >
+            <div class="meneppe_member_dialog_content">
+              説明
+            </div>
+          </dialog>
+        </div>
         </div>
         <style>
+          .maneppe_fadeInList {
+            position:relative;
+          }
           .maneppe_fadeInList_ul {
             margin: 0;
             padding: 0;
@@ -415,8 +444,112 @@
           .fa-comment-dots {
            margin-left: 0.2rem;
           }
+          .meneppe_member_dialog {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2147483647;
+            border: solid 2px #eee;
+            border: none;
+            outline: none;
+            background-color: rgba( 0, 0, 0, 0.1);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            animation: maneppe_member_dialog_fadeOut 0.3s 1 forwards ease-in;
+          }
+          .meneppe_member_dialog.show {
+            display: block;
+            animation: maneppe_member_dialog_fadeIn 0.3s 1 forwards ease-in;
+          }
+          .meneppe_member_dialog_content {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 50%;
+            transform: translate(100%, -50%);
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            background-color: #fff;
+            padding: 1rem;
+            box-sizing: border-box;
+            white-space: pre-line;
+            animation: maneppe_member_dialog_content_leftToRight 0.5s 1 forwards ease-in;
+          }
+          .meneppe_member_dialog.show .meneppe_member_dialog_content {
+            transform: translate(0, -50%);
+            animation: maneppe_member_dialog_content_rightToLeft 0.5s 1 forwards ease-in;
+          }
+          @media screen and (max-width:800px) {
+            .meneppe_member_dialog_content {
+              width: 75%;
+            }
+          }
+          @keyframes maneppe_member_dialog_fadeIn {
+            0% {
+              display: none;
+              opacity: 0;
+            }
+            1% {
+              display: block;
+              opacity: 0;
+            }
+            100% {
+              display: block;
+              opacity: 1;
+            }
+          }
+          @keyframes maneppe_member_dialog_fadeOut {
+            0% {
+              display: block;
+              opacity: 1;
+            }
+            99% {
+              display: block;
+              opacity: 0;
+            }
+            100% {
+              display: none;
+              opacity: 0;
+            }
+          }
+          @keyframes maneppe_member_dialog_content_rightToLeft {
+            0% {
+              display: none;
+              transform: translate(100%, -50%);
+            }
+            1% {
+              display: block;
+              transform: translate(100%, -50%);
+            }
+            100% {
+              display: block;
+              transform: translate(0, -50%);
+            }
+          }
+          @keyframes maneppe_member_dialog_content_leftToRight {
+            0% {
+              display: block;
+              transform: translate(0, -50%);
+            }
+            1% {
+              display: block;
+              transform: translate(100%, -50%);
+            }
+            100% {
+              display: none;
+              transform: translate(100%, -50%);
+            }
+          }
+          
         </style>
         <script type="text/javascript">
+          const memberDialog = document.getElementById("meneppe_member_dialog");
+          const memberDialogContent = document.querySelector(".meneppe_member_dialog_content");
           function animationStartFunc(scrollAnimationElems) {
             for (let i = 0; i < scrollAnimationElems.length; i++) {
               const triggerMargin = 100;
@@ -442,6 +575,39 @@
             });
             animationStartFunc(scrollElem);
           });
+
+          const memberCommentArray = [
+            '職種がフロントエンドで、今後の為にwebの勉強したくてreact触ってみたけど難しい。でも楽しいです。', 
+            '好きな猫についてのサービスを、好きなchartJSを使って作れて、優しいメンバー達にも恵まれて、本当に楽しい制作でした！',
+            '劇団のホームページ運営(https://hanami-goya/)してます～。最近はUnity, Blenderで学校の教室(https://0j01001hibiki.github.io/SchoolMetaverse/)作ってみたり、趣味でMMD触ってみたり色々してます～。今回の開発においては、ReactやNode.jsに触れられて面白かった～。猫飼ってはいませんが、好きなので、ちょっと詳しくなれたの嬉しい～',
+            'デザインを考えるようになってから、街中で広告や案内図などの配色、文字の位置などを細かく見るようになってしまい目が疲れています...', 
+            '',
+            '',
+          ];
+          function fa_comment_dots_onClick(e) {
+            if(e.target.dataset.member !== null) {
+              const memnberIndex = Number(e.target.dataset.member);
+              if(memnberIndex !== null && memnberIndex >= 0 && memnberIndex < memberCommentArray.length) {
+                memberDialogContent.textContent = memberCommentArray[memnberIndex];
+              }
+              
+              memberDialog.classList.toggle('show', true);
+              // memberDialog.showModal();
+            }
+          }
+          const memberCommentIcons = document.querySelectorAll(".maneppe_fadeInList_content > .fa-comment-dots");
+          for(let i = 0; i < memberCommentIcons.length; i++) {
+            memberCommentIcons[i].addEventListener('click', fa_comment_dots_onClick);
+          }
+
+          function meneppe_member_dialog_onClick(e) {
+            console.log(e.target.closest('.meneppe_member_dialog_content'));
+            if(e.target.closest('.meneppe_member_dialog_content') === null) {
+              memberDialog.classList.toggle('show', false);
+              memberDialog.close();
+            }
+          }
+          memberDialog.addEventListener('click', meneppe_member_dialog_onClick);
         </script>
       </section>
       <!-- <div class="maneppe_spacer"><hr class="maneppe_hr"></div> -->
@@ -453,7 +619,7 @@
         <div class="maneppe_content_inner maneppe_tagArea">
           <!-- https://digitalworks-it.com/tag/タグ名/ -->
           <script>
-            const tagList = ['React', 'JavaScript', 'Node.js'];
+            const tagList = ['HTML5', 'CSS', 'JavaScript', 'PHP','Node.js', 'React', 'Adobe'];
             const tagArea = document.getElementsByClassName('maneppe_tagArea');
             for(let i = 0; i < tagArea.length; i++) {
               for(let j = 0; j < tagList.length; j++) {
