@@ -305,10 +305,10 @@
         <div class="maneppe_playfulness_area">
           <button class="maneppe_Whose_tail_area">
             <div style="position: relative;">
-              <img class="maneppe_Whose_tail" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Tail.webp" />
-              <img class="maneppe_coin1" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Coin.webp">
-              <img class="maneppe_coin2" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Coin.webp">
-              <img class="maneppe_coin3" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Coin.webp">
+              <img class="maneppe_Whose_tail" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Tail.webp" loading="lazy" width="135" height="115" />
+              <img class="maneppe_coin1" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Coin.webp" loading="lazy" width="106" height="89">
+              <img class="maneppe_coin2" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Coin.webp" loading="lazy" width="106" height="89">
+              <img class="maneppe_coin3" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Coin.webp" loading="lazy" width="106" height="89">
               <p class="maneppe_secretMessage">Thank you for browsing our website at the details !!!</p>
             </div>
           </div>
@@ -362,6 +362,7 @@
               display: block;
               position: absolute;
               width: 1rem;
+              height: auto;
               top: 0%;
               right: 100%;
               transform: translate(0, 0);
@@ -473,8 +474,8 @@
             <div class="maneppe_WorkIntro_img">
               「マネッペ」は猫の一生にかかるお金を計算するためのwebサイトです。
               <a href="https://maneppe.com/" target="_blank" aria-label="サイトへのリンク">
-                <img class="maneppe_WorkIntro_keyvisual" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/keyvisual.webp" alt="webサイト、マネッペのシミュレーション画面の画像" width="663" height="328" />
-                <img class="maneppe_WorkIntro_bottom" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/WearingHat2.webp" alt="webサイト、マネッペのキャラクター。ビーバー。博士帽を被り、人参でシミュレーション画面の画像を指している。" width="225" height="214">
+                <img class="maneppe_WorkIntro_keyvisual" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/keyvisual.webp" alt="webサイト、マネッペのシミュレーション画面の画像" width="663" height="328" loading="lazy" />
+                <img class="maneppe_WorkIntro_bottom" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/WearingHat2.webp" alt="webサイト、マネッペのキャラクター。ビーバー。博士帽を被り、人参でシミュレーション画面の画像を指している。" width="225" height="214" loading="lazy">
                 <span class="maneppe_WorkIntro_tooltip">サイトを開く</span>
               </a>
             </div>
@@ -593,7 +594,7 @@
           デモ動画
         </h2>
         <div class="maneppe_content_inner maneppe_demoMovieArea">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/ohaWtjjbaMs?si=sample" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          <iframe loading="lazy" width="560" height="315" src="https://www.youtube.com/embed/ohaWtjjbaMs?si=sample" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <style>
           .maneppe_demoMovieArea {
@@ -622,7 +623,7 @@
           発表スライド
         </h2>
         <div class="maneppe_content_inner maneppe_presentationArea">
-          <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSdpM3kkEUdLtBBkA4GAOwVbPJNvysOxiOwe6K2CH9gTcgH1TGmI41Tc_4wesBKThZStx_oAfLxoLTZ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" loading="lazy"></iframe>
+          <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSdpM3kkEUdLtBBkA4GAOwVbPJNvysOxiOwe6K2CH9gTcgH1TGmI41Tc_4wesBKThZStx_oAfLxoLTZ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" loading="lazy" title="マネッペ 発表用Googleスライド"></iframe>
         </div>
         <style>
           .maneppe_presentationArea {
@@ -869,7 +870,7 @@
             }
           }
           
-          window.addEventListener('load', function(){
+          window.addEventListener('DOMContentLoaded', function(){
             const scrollElem = document.querySelectorAll('.maneppe_fadeInList_ul, .maneppe_WorkIntro_bottom');
             
             toTopButton.addEventListener('click', function() {
@@ -1027,8 +1028,8 @@
       <div>
         &copy;team Bee
       </div>
-      <img class="maneppe_footer_icon maneppe_left_icon" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/normal.svg" alt="webサイト、マネッペのビーバーのシルエット" width="170" height="150">
-      <img class="maneppe_footer_icon maneppe_right_icon" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/catAndCoin.svg" alt="webサイト、マネッペのネコのシルエット" width="110.31" height="72.15" />
+      <img class="maneppe_footer_icon maneppe_left_icon" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/normal.svg" alt="webサイト、マネッペのビーバーのシルエット" width="170" height="150" loading="lazy">
+      <img class="maneppe_footer_icon maneppe_right_icon" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/catAndCoin.svg" alt="webサイト、マネッペのネコのシルエット" width="110.31" height="72.15" loading="lazy" />
       <style>
         .maneppe_footer {
           position: relative;
