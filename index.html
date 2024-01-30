@@ -282,6 +282,7 @@
               z-index: 10000;
             }
             .maneppe_hamburger_menu_content ul {
+              padding: 1rem;
               list-style: none;
             }
             .maneppe_hamburger_menu_content ul li a {
@@ -289,7 +290,15 @@
               width: 100%;
               height: 100%;
               padding: 0.45rem 0.9rem;
+              color: #fff;
               box-sizing: border-box;
+              text-decoration: none;
+            }
+            .maneppe_hamburger_menu_content ul li a:hover {
+              background-color: #555;
+            }
+            .maneppe_hamburger_menu_content ul li a span {
+              margin-right: 0.5rem;
             }
           </style>
         </nav>
@@ -584,7 +593,7 @@
           デモ動画
         </h2>
         <div class="maneppe_content_inner maneppe_demoMovieArea">
-          動画～
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/ohaWtjjbaMs?si=sample" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
         </div>
         <style>
           .maneppe_demoMovieArea {
@@ -756,6 +765,7 @@
             flex-direction: column;
             align-items: flex-start;
             justify-content: center;
+            overflow: auto;
             top: 50%;
             right: 0;
             width: 50%;
@@ -840,7 +850,6 @@
         <script type="text/javascript">
           const memberDialog = document.getElementById("meneppe_member_dialog");
           const memberDialogContent = document.querySelector(".meneppe_member_dialog_content");
-          // const header = document.querySelector('.maneppe_header');
             const toTopButton = document.querySelector('#maneppe_toTopButton');
           function animationStartFunc(scrollAnimationElems) {
             for (let i = 0; i < scrollAnimationElems.length; i++) {
@@ -861,8 +870,6 @@
           }
           
           window.addEventListener('load', function(){
-            // const fadeInList = document.querySelectorAll('.maneppe_fadeInList_ul');
-            // const workIntroBottomCharacter = document.querySelector('.maneppe_WorkIntro_bottom');
             const scrollElem = document.querySelectorAll('.maneppe_fadeInList_ul, .maneppe_WorkIntro_bottom');
             
             toTopButton.addEventListener('click', function() {
@@ -871,7 +878,6 @@
                 behavior: "smooth"
               });
             });
-            //scroll_effect
             window.addEventListener('scroll', function(){ 
               animationStartFunc(scrollElem);
               scrollLocatoinFunc();
@@ -915,7 +921,7 @@
           }
 
           function memberCommentArray5() {
-            return ['contact', getMailATag('kd1330280@st.kobedenshi.ac.jp')];
+            return ['今回の役割としてはフロントたくさん、バック少々しました。\r\n基本的に自分に振られたタスク+αメンバーの手が足りていない部分を手伝ったりしました。\r\n今回は、新しい言語や技術に触れられて楽しかったです。\r\n', 'contact', getMailATag('kd1330280@st.kobedenshi.ac.jp')];
           }
 
           function memberCommentArray6() {
@@ -942,11 +948,9 @@
                 for(let i = 0; i < memberDialogContentElementArray.length; i++) {
                   memberDialogContent.append(memberDialogContentElementArray[i]);
                 }
-                // memberDialogContent.textContent = memberCommentArray[memnberIndex];
               }
               
               memberDialog.classList.toggle('show', true);
-              // memberDialog.showModal();
             }
           }
           const memberCommentIcons = document.querySelectorAll(".maneppe_fadeInList_content > .fa-comment-dots");
@@ -1166,7 +1170,6 @@
     </script>
   </body>
   <!-- 
-    何かテキストアート作ろっかな～～
-
+    
    -->
 </html>
