@@ -2,15 +2,17 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
+    <link rel="icon" href="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>チームbee マネッペ</title>
-    <meta name="description" content="チームbee、webサイトであるマネッペを制作したチームのデジタルワークス用Webページです。マネッペとは、猫の一生にかかるお金を計算するためのwebサイトです。ぜひ訪れてみてください">
+    <title>チームBee マネッペ</title>
+    <meta name="description" content="チームBee、webサイトであるマネッペを制作したチームのデジタルワークス用Webページです。マネッペとは、猫の一生にかかるお金を計算するためのwebサイトです。ぜひ訪れてみてください">
     <link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <style>
       body {
         margin: 0;
         padding: 0;
+        overflow-x: hidden;
         background-color: #b2d3ea40;
       }
       .maneppe_main {
@@ -28,6 +30,8 @@
         width: 100%;
         height: 340px;
         object-fit:contain;
+        border: solid 4px black;
+        box-sizing: border-box;
       }
       .maneppe_logo .maneppe_logoTail {
         position: absolute;
@@ -78,7 +82,7 @@
   <body>
     <header class="maneppe_header">
       <div class="maneppe_header_teamName">
-        【マネッペ】チームbee
+        【マネッペ】チームBee
       </div>
       <div>
         <input 
@@ -118,13 +122,14 @@
           right: 0;
           min-height: 3rem;
           min-width: 3rem;
-          z-index: 11;
+          z-index: 10;
           padding: 0.5rem 0.5rem;
           border: none;
           border-radius: 0.5rem;
           background-color: transparent;
           margin: 0.5rem;
           box-sizing: border-box;
+          cursor: pointer;
         }
         .maneppe_hamburger_menu i {
           display: inline-block;
@@ -162,95 +167,293 @@
     </header>
     <main class="maneppe_main">
       <div id="maneppe_main" style="position: absolute;height:100%;width:100%;z-index:-1;" ></div>
-      <nav class="maneppe_hamburger_menu_content">
-        <ul>
-          <li><a class="maneppe_page_link" href="#maneppe_WorkIntro_section" data-link="maneppe_WorkIntro_section"><span class="fa-solid fa-chart-pie"></span>作品紹介</a></li>
-          <li><a class="maneppe_page_link" href="#maneppe_demoMovie_section" data-link="maneppe_demoMovie_section"><span class="fa-brands fa-youtube"></span>デモ動画</a></li>
-          <li><a class="maneppe_page_link" href="#maneppe_member_section"  data-link="maneppe_member_section"><span class="fa-solid fa-user"></span>メンバー</a></li>
-          <li><a class="maneppe_page_link" href="#maneppe_tags_section"  data-link="maneppe_tags_section"><span class="fa-solid fa-tags"></span>タグ一覧</a></li>
-        </ul>
-        <script>
-          const checkbox = document.getElementById("maneppe_hamburger_menu_checkbox");
-          const navigate = document.querySelector('.maneppe_hamburger_menu_content');
-          const header = document.querySelector('header');
-          checkbox.addEventListener('change', function(e) {
-            if(e.target.checked) {
-              navigationOpen();
-            } else {
-              navigateClose();
-            }
-          });
-          const maneppe_page_link = document.querySelectorAll('.maneppe_page_link');
-          for(let i = 0 ; i < maneppe_page_link.length; i++) {
-            maneppe_page_link[i].addEventListener('click', navigation_link_onClick);
-          }
-          function navigation_link_onClick(e) {
-            const element = document.getElementById(e.target.dataset.link);
-
-            if(element !== null) {
-              const targetDOMRect = element.getBoundingClientRect();
-              const targetTop = targetDOMRect.top + window.pageYOffset;
-              document.documentElement.scrollTop = targetTop - header.clientHeight;
-              navigateClose();
-            }
-            e.preventDefault();
-          }
-          function navigationOpen() {
-            navigate.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            header.style.opacity = 1;
-          }
-          function navigateClose() {
-            navigate.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            checkbox.checked = false;
-            if(window.scrollY > 0) {
-              header.style.opacity = 0.75;
-            }
-          }
-        </script>
+      <button id="maneppe_toTopButton" class="maneppe_toTopButton" aria-label="トップへ戻るボタン">
+        <img src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/top.svg" alt="Topへのボタン" width="71.38" height="61.18">
         <style>
-          .maneppe_hamburger_menu_content {
+          .maneppe_toTopButton {
             display: none;
             position: fixed;
-            top: 4rem;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            color: #fff;
-            background-color: #000;
-            z-index: 9999;
+            min-height:48px;
+            min-width:48px;
+            bottom: 24px;
+            right: 24px;
+            z-index:1001;
+            border: none;
+            cursor: pointer;
+            background-color: transparent;
+            animation: maneppe_toTopButton_fadeOut 0.5s 1 forwards;
           }
-          .maneppe_hamburger_menu_content ul {
-            list-style: none;
-          }
-          .maneppe_hamburger_menu_content ul li a {
+          .maneppe_toTopButton.show {
             display: block;
-            width: 100%;
-            height: 100%;
-            padding: 0.45rem 0.9rem;
-            box-sizing: border-box;
+            animation: maneppe_toTopButton_fadeIn 0.5s 1 forwards;
+          }
+          .maneppe_toTopButton:hover img {
+            filter: brightness(1.1);
+          }
+          @keyframes maneppe_toTopButton_fadeIn {
+            0% {
+              display: none;
+            }
+            1% {
+              display: block;
+              opacity: 0;
+            }
+            100% {
+              display: block;
+              opacity: 1;
+            }
+          }
+          @keyframes maneppe_toTopButton_fadeOut {
+            0% {
+              display: block;
+              opacity: 1;
+            }
+            99% {
+              display: block;
+              opacity: 0;
+            }
+            100% {
+              display: none;
+              opacity: 0;
+            }
           }
         </style>
-      </nav>
+      </button>
+      <div class="maneppe_hamburger_menu_content">
+        <nav>
+          <ul>
+            <li><a class="maneppe_page_link" href="#maneppe_WorkIntro_section" data-link="maneppe_WorkIntro_section"><span class="fa-solid fa-chart-pie"></span>作品紹介</a></li>
+            <li><a class="maneppe_page_link" href="#maneppe_demoMovie_section" data-link="maneppe_demoMovie_section"><span class="fa-brands fa-youtube"></span>デモ動画</a></li>
+            <li><a class="maneppe_page_link" href="#maneppe_presentationSlide_section" data-link="maneppe_presentationSlide_section"><span class="fa-solid fa-folder"></span>発表スライド</a></li>
+            <li><a class="maneppe_page_link" href="#maneppe_poster_section" data-link="maneppe_poster_section"><span class="fa-solid fa-flag"></span>ポスター</a></li>
+            <li><a class="maneppe_page_link" href="#maneppe_member_section"  data-link="maneppe_member_section"><span class="fa-solid fa-user"></span>メンバー</a></li>
+            <li><a class="maneppe_page_link" href="#maneppe_tags_section"  data-link="maneppe_tags_section"><span class="fa-solid fa-tags"></span>タグ一覧</a></li>
+          </ul>
+          <script>
+            const checkbox = document.getElementById("maneppe_hamburger_menu_checkbox");
+            const navigate = document.querySelector('.maneppe_hamburger_menu_content');
+            const header = document.querySelector('header');
+            checkbox.addEventListener('change', function(e) {
+              if(e.target.checked) {
+                navigationOpen();
+              } else {
+                navigateClose();
+              }
+            });
+            const maneppe_page_link = document.querySelectorAll('.maneppe_page_link');
+            for(let i = 0 ; i < maneppe_page_link.length; i++) {
+              maneppe_page_link[i].addEventListener('click', navigation_link_onClick);
+            }
+            function navigation_link_onClick(e) {
+              const element = document.getElementById(e.target.dataset.link);
+
+              if(element !== null) {
+                const targetDOMRect = element.getBoundingClientRect();
+                const targetTop = targetDOMRect.top + window.pageYOffset;
+                document.documentElement.scrollTop = targetTop - header.clientHeight;
+                navigateClose();
+              }
+              e.preventDefault();
+            }
+            function navigationOpen() {
+              navigate.style.display = 'block';
+              document.body.style.overflow = 'hidden';
+              header.style.opacity = 1;
+            }
+            function navigateClose() {
+              navigate.style.display = 'none';
+              document.body.style.overflow = 'auto';
+              checkbox.checked = false;
+              if(window.scrollY > 0) {
+                header.style.opacity = 0.75;
+              }
+            }
+          </script>
+          <style>
+            .maneppe_hamburger_menu_content {
+              display: none;
+              position: fixed;
+              top: 4rem;
+              left: 0;
+              width: 100%;
+              height: calc(100vh - 4rem);
+              color: #fff;
+              background-color: #000;
+              z-index: 10000;
+            }
+            .maneppe_hamburger_menu_content ul {
+              list-style: none;
+            }
+            .maneppe_hamburger_menu_content ul li a {
+              display: block;
+              width: 100%;
+              height: 100%;
+              padding: 0.45rem 0.9rem;
+              box-sizing: border-box;
+            }
+          </style>
+        </nav>
+        <div class="maneppe_playfulness_area">
+          <button class="maneppe_Whose_tail_area">
+            <div style="position: relative;">
+              <img class="maneppe_Whose_tail" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Tail.webp" />
+              <img class="maneppe_coin1" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Coin.webp">
+              <img class="maneppe_coin2" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Coin.webp">
+              <img class="maneppe_coin3" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/Coin.webp">
+              <p class="maneppe_secretMessage">Thank you for browsing our website at the details !!!</p>
+            </div>
+          </div>
+          <style>
+            .maneppe_Whose_tail_area {
+              position: absolute;
+              right:0;
+              bottom: 0;
+              width: 2rem;
+              transform: scale(-1, 1);
+              border: none;
+              background-color: transparent;
+              padding: 0;
+            }
+            .maneppe_Whose_tail {
+              width: 100%;
+              height: 100%;
+              transform-origin: left bottom;
+              transform: rotate(0deg);
+            }
+            .maneppe_Whose_tail_area:hover .maneppe_Whose_tail {
+              animation: maneppe_tail_swinging 4s infinite linear;
+            }
+            @keyframes maneppe_tail_swinging {
+              0% {
+                transform: rotate(0deg) scale(1, 1);
+              }
+              14.25%{
+                transform: rotate(-15deg) scale(1,1.1);
+              }
+              28.5% {
+                transform: rotate(-30deg) scale(1,0.9);
+              }
+              42.8% {
+                transform: rotate(-15deg) scale(1,1.1);
+              }
+              57.14% {
+                transform: rotate(0deg) scale(1,1.05);
+              }
+              71.42% {
+                transform: rotate(30deg) scale(1,1.1);
+              }
+              85.71% {
+                transform: rotate(15deg) scale(1,1.05);
+              }
+              100% {
+                transform: rotate(0deg) scale(1);
+              }
+            }
+            .maneppe_coin1, .maneppe_coin2, .maneppe_coin3 {
+              display: block;
+              position: absolute;
+              width: 1rem;
+              top: 0%;
+              right: 100%;
+              transform: translate(0, 0);
+            }
+            .maneppe_Whose_tail_area:hover .maneppe_coin1,
+            .maneppe_Whose_tail_area:hover .maneppe_coin2,
+            .maneppe_Whose_tail_area:hover .maneppe_coin3  {
+              display: block;
+              animation: maneppe_display 1s infinite linear;
+            }
+            @keyframes maneppe_display {
+              0% { display: none;}
+              1% { display: block; }
+              100% { display: block; }
+            }
+            .maneppe_Whose_tail_area:hover .maneppe_coin1 {
+              animation: maneppe_coin_dropout1 1.2s infinite linear;
+              animation-delay: 0.25s;
+            }
+            @keyframes maneppe_coin_dropout1 {
+              0% { top: 0%; transform: translate(0, 0); }
+              1% { top: 0%; transform: translate(0, 0); }
+              100% { top: 100%; transform: translate(150px, 0); }
+            }
+            .maneppe_Whose_tail_area:hover .maneppe_coin2 {
+              animation: maneppe_coin_dropout2 1.5s infinite linear;
+              animation-delay: 0s;
+            }
+            @keyframes maneppe_coin_dropout2 {
+              0% { top: -10%; transform: translate(0, 0); }
+              1% { top: -10%; transform: translate(0, 0); }
+              100% { top: 100%; transform: translate(75px, 0); }
+            }
+            .maneppe_Whose_tail_area:hover .maneppe_coin3 {
+              animation: maneppe_coin_dropout3 1s infinite linear;
+              animation-delay: 0.5s;
+            }
+            @keyframes maneppe_coin_dropout3 {
+              0% { top: 10%; transform: translate(0, 0); }
+              1% { top: 10%; transform: translate(0, 0); }
+              100% { top: 100%; transform: translate(200px, 0); }
+            }
+            .maneppe_secretMessage {
+              position: fixed;
+              right: -100%;
+              bottom: 0.5rem;
+              text-wrap: nowrap;
+              color: #ffffff;
+              background-color: #0000ffc9;
+              border: 3px solid transparent;
+              border-radius: 1rem;
+              box-sizing: border-box;
+              margin: 0;
+              padding: 0.45rem 0.9rem;
+              transform: scale(-1, 1) translate(100%, 0);
+            }
+            .maneppe_Whose_tail_area.show .maneppe_secretMessage {
+              right: 0%;
+              bottom: 0;
+              animation: maneppe_secretMessage_show 0.8s forwards linear,  maneppe_secretMessage_show_bound 1s forwards linear;
+            }
+            @keyframes maneppe_secretMessage_show {
+              0% { right: -100%; transform: scale(-1, 1) translate(100%, 0) }
+              1% { right: -100%; transform: scale(-1, 1) translate(80%, 0) }
+              100% { right: 0%; transform: scale(-1, 1) translate(-100%, 0) }
+            }
+            @keyframes maneppe_secretMessage_show_bound {
+              1% { bottom: 0; }
+              15% { bottom: 1.5rem; }
+              30% { bottom: 3.0rem;  }
+              50% { bottom: -0.0rem; }
+              70% { bottom: 1.5rem;  }
+              100% { bottom: 0rem; }
+            }
+          </style>
+          <script>
+            const whoseTailArea = document.querySelector('.maneppe_Whose_tail_area');
+
+            whoseTailArea.addEventListener('dblclick', function() {
+              if(whoseTailArea.classList.contains('show')) {
+                whoseTailArea.classList.toggle('show', false);
+              } else {
+                whoseTailArea.classList.toggle('show', true);
+              }
+              
+            });
+          </script>
+        </div>
+      </div>
       <div class="maneppe_spacer"></div>
       <div class="maneppe_content maneppe_logo">
         <img
           class="maneppe_logoImage"
-          src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/eyecatch.png" width="865"
-          height="340"
+          src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/maneppelogo.webp"
+          width="1864"
+          height="628"
           alt="webサイト、マネッペのロゴ"
         />
-        <!-- <img
-          class="maneppe_logoTail"
-          src="./images/Tail.webp"
-          width="135"
-          height="115"
-          alt="webサイト、マネッペのロゴの尻尾"
-        /> -->
+
       </div>
       <div class="maneppe_spacer"></div>
-      <!-- <div class="maneppe_spacer"><hr class="maneppe_hr"></div> -->
       <section id="maneppe_WorkIntro_section" class="maneppe_content maneppe_WorkIntro">
         <h2 class="maneppe_content_header">
           <span class="fa-solid fa-chart-pie"></span>
@@ -261,8 +464,8 @@
             <div class="maneppe_WorkIntro_img">
               「マネッペ」は猫の一生にかかるお金を計算するためのwebサイトです。
               <a href="https://maneppe.com/" target="_blank" aria-label="サイトへのリンク">
-                <img class="maneppe_WorkIntro_keyvisual" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/keyvisual.png" alt="webサイト、マネッペのシミュレーション画面の画像" width="663" height="328" />
-                <img class="maneppe_WorkIntro_bottom" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/WearingHat2.png" alt="webサイト、マネッペのキャラクター。ビーバー。博士帽を被り、人参でシミュレーション画面の画像を指している。" width="225" height="214">
+                <img class="maneppe_WorkIntro_keyvisual" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/keyvisual.webp" alt="webサイト、マネッペのシミュレーション画面の画像" width="663" height="328" />
+                <img class="maneppe_WorkIntro_bottom" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/WearingHat2.webp" alt="webサイト、マネッペのキャラクター。ビーバー。博士帽を被り、人参でシミュレーション画面の画像を指している。" width="225" height="214">
                 <span class="maneppe_WorkIntro_tooltip">サイトを開く</span>
               </a>
             </div>
@@ -317,11 +520,12 @@
             position: absolute;
             height: auto;
             width: 5rem;
-            right: 0;
+            right: -20%;
             bottom: 0;
             z-index: 2;
           }
           .maneppe_WorkIntro_bottom.run {
+            right:0;
             animation: workIntro_character_bound 1.1s linear 0s 1, 
                        workIntro_character_rightToView 1.1s linear 0s 1;
           }
@@ -357,7 +561,6 @@
           .maneppe_WorkIntro_tooltip::after {
             content: '';
             position: absolute;
-            /* top: 50%;*/
             right: 0.5lh;
             bottom: 0;
             border: calc(0.5lh + 0.225rem) solid transparent;
@@ -375,23 +578,99 @@
           }
         </style>
       </section>
-      <!-- <div class="maneppe_spacer"><hr class="maneppe_hr"></div> -->
       <section id="maneppe_demoMovie_section" class="maneppe_content">
         <h2 class="maneppe_content_header">
           <span class="fa-brands fa-youtube"></span>
           デモ動画
         </h2>
-        <div class="maneppe_content_inner">
+        <div class="maneppe_content_inner maneppe_demoMovieArea">
           動画～
         </div>
+        <style>
+          .maneppe_demoMovieArea {
+            position: relative;
+            padding-top: 56.25%;
+          }
+          @media screen and (max-width: 600px) {
+            .maneppe_demoMovieArea {
+              margin: 1rem 0;
+            }
+          }
+          .maneppe_demoMovieArea iframe {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            box-sizing: border-box;
+          }
+        </style>
       </section>
-      <!-- <div class="maneppe_spacer"><hr class="maneppe_hr"></div> -->
+      <section id="maneppe_presentationSlide_section" class="maneppe_content">
+        <h2 class="maneppe_content_header">
+          <span class="fa-solid fa-folder"></span>
+          発表スライド
+        </h2>
+        <div class="maneppe_content_inner maneppe_presentationArea">
+          <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSdpM3kkEUdLtBBkA4GAOwVbPJNvysOxiOwe6K2CH9gTcgH1TGmI41Tc_4wesBKThZStx_oAfLxoLTZ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" loading="lazy"></iframe>
+        </div>
+        <style>
+          .maneppe_presentationArea {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 50%;
+            padding-top: 65px;
+          }
+          @media screen and (max-width: 600px) {
+            .maneppe_presentationArea {
+              margin: 1rem 0;
+            }
+          }
+          .maneppe_presentationArea iframe {
+            border-radius: 1rem;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+          }
+        </style>
+      </section>
+      <section id="maneppe_poster_section" class="maneppe_content">
+        <h2 class="maneppe_content_header">
+          <span class="fa-solid fa-flag"></span>
+          ポスター
+        </h2>
+        <div class="maneppe_content_inner maneppe_posterArea">
+          <img
+            src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/ポスター.webp"
+            width="508"
+            height="720"
+            alt="Webサイト、マネッペのポスター。「毎月のトリミング代も！ゲージなどの初期費用も！ペットの保険代などの医療費も！マネッペで簡単にシミュレーション！」と書かれている。"
+            loading="lazy"
+          />
+        </div>
+        <style>
+          @media screen and (max-width: 600px) {
+            .maneppe_posterArea {
+              margin: 1rem 0;
+            }
+          }
+          .maneppe_posterArea img {
+            height: auto;
+            width: 100%;
+            border: solid 3px #999;
+          }
+        </style>
+      </section>
       <section id="maneppe_member_section" class="maneppe_content maneppe_fadeInList">
         <h2 class="maneppe_content_header">
           <span class="fa-solid fa-user"></span>
           メンバー
         </h2>
-        <div class="maneppe_content_inner">
+        <div class="maneppe_content_inner maneppe_fadeInListArea">
           <ul class="maneppe_fadeInList_ul">
             <li class="maneppe_fadeInList_content" style="transition-delay: 0;">寺田 伊吹<span class="fa-solid fa-comment-dots" data-member="0"></span>
               プロダクトオーナー、イラスト
@@ -417,12 +696,17 @@
             class="meneppe_member_dialog"
           >
             <div class="meneppe_member_dialog_content">
-              説明
+              
             </div>
           </dialog>
         </div>
         </div>
         <style>
+          @media screen and (max-width:600px) {
+            .maneppe_fadeInListArea {
+              margin: 1rem 1.5rem;
+            }
+          }
           .maneppe_fadeInList {
             position:relative;
           }
@@ -443,6 +727,7 @@
           }
           .fa-comment-dots {
            margin-left: 0.2rem;
+           cursor: pointer;
           }
           .meneppe_member_dialog {
             display: none;
@@ -452,7 +737,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: 2147483647;
+            z-index: 999;
             border: solid 2px #eee;
             border: none;
             outline: none;
@@ -468,9 +753,13 @@
           }
           .meneppe_member_dialog_content {
             position: absolute;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
             top: 50%;
             right: 0;
             width: 50%;
+            height: 100%;
             transform: translate(100%, -50%);
             border-top-left-radius: 1rem;
             border-bottom-left-radius: 1rem;
@@ -478,6 +767,7 @@
             padding: 1rem;
             box-sizing: border-box;
             white-space: pre-line;
+            word-break: break-all;
             animation: maneppe_member_dialog_content_leftToRight 0.5s 1 forwards ease-in;
           }
           .meneppe_member_dialog.show .meneppe_member_dialog_content {
@@ -523,21 +813,21 @@
               transform: translate(100%, -50%);
             }
             1% {
-              display: block;
+              display: flex;
               transform: translate(100%, -50%);
             }
             100% {
-              display: block;
+              display: flex;
               transform: translate(0, -50%);
             }
           }
           @keyframes maneppe_member_dialog_content_leftToRight {
             0% {
-              display: block;
+              display: flex;
               transform: translate(0, -50%);
             }
             1% {
-              display: block;
+              display: flex;
               transform: translate(100%, -50%);
             }
             100% {
@@ -550,6 +840,8 @@
         <script type="text/javascript">
           const memberDialog = document.getElementById("meneppe_member_dialog");
           const memberDialogContent = document.querySelector(".meneppe_member_dialog_content");
+          // const header = document.querySelector('.maneppe_header');
+            const toTopButton = document.querySelector('#maneppe_toTopButton');
           function animationStartFunc(scrollAnimationElems) {
             for (let i = 0; i < scrollAnimationElems.length; i++) {
               const triggerMargin = 100;
@@ -557,38 +849,100 @@
                   scrollAnimationElems[i].classList.add('run');
               }
             }
-          } 
+          }
+          function scrollLocatoinFunc() {
+            if(window.scrollY > 0 && checkbox.checked !== true) {
+              header.style.opacity = 0.75;
+              toTopButton.classList.toggle('show', true);
+            } else {
+              header.style.opacity = 1;
+              toTopButton.classList.toggle('show', false);
+            }
+          }
           
           window.addEventListener('load', function(){
             // const fadeInList = document.querySelectorAll('.maneppe_fadeInList_ul');
             // const workIntroBottomCharacter = document.querySelector('.maneppe_WorkIntro_bottom');
             const scrollElem = document.querySelectorAll('.maneppe_fadeInList_ul, .maneppe_WorkIntro_bottom');
-            const header = document.querySelector('.maneppe_header');
+            
+            toTopButton.addEventListener('click', function() {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+              });
+            });
             //scroll_effect
             window.addEventListener('scroll', function(){ 
               animationStartFunc(scrollElem);
-              if(window.scrollY > 0 && checkbox.checked !== true) {
-                header.style.opacity = 0.75;
-              } else {
-                header.style.opacity = 1;
-              }
+              scrollLocatoinFunc();
             });
             animationStartFunc(scrollElem);
+            scrollLocatoinFunc();
           });
 
+          function getMailATag(address) {
+            const mailAddressATag = document.createElement('a');
+            mailAddressATag.setAttribute('href', `mailto:${address}`);
+            mailAddressATag.textContent = address;
+            return mailAddressATag;
+          }
+
+          function memberCommentArray1() {
+            return ['職種がフロントエンドで、今後の為にwebの勉強したくてreact触ってみたけど難しい。でも楽しいです。\r\n', 'contact', getMailATag('kd1288853@st.kobedenshi.ac.jp')];
+          }
+
+          function memberCommentArray2() {
+            return ['好きな猫についてのサービスを、好きなchartJSを使って作れて、優しいメンバー達にも恵まれて、本当に楽しい制作でした！\r\n', 'contact', getMailATag('kd1325335@st.kobedenshi.ac.jp')];
+          }
+
+          function memberCommentArray3() {
+            const hanamigoyaATag = document.createElement('a');
+            hanamigoyaATag.textContent = 'https://hanami-goya.com/';
+            hanamigoyaATag.setAttribute('href', 'https://hanami-goya.com/');
+            hanamigoyaATag.setAttribute('target', 'blank');
+
+            const schoolATag = document.createElement('a');
+            schoolATag.textContent = 'https://0j01001hibiki.github.io/SchoolMetaverse/';
+            schoolATag.setAttribute('href', 'https://0j01001hibiki.github.io/SchoolMetaverse/');
+            schoolATag.setAttribute('target', 'blank');
+
+
+            return ['劇団のホームページとか運営してます～。\r\n最近はUnity, Blenderで学校の教室作ってみたり、趣味でMMD触ってみたり色々して楽しんでます～。\r\n今回の開発においては、ReactやNode.jsに触れられて面白かった～。\r\n猫飼ってはいませんが、好きなので、ちょっと詳しくなれたの嬉しい～\r\n\r\n劇団 花観小屋\r\n ', hanamigoyaATag, '学校の教室 \r\n ', schoolATag, 'contact', getMailATag('kd1327079@st.kobedenshi.ac.jp')];
+          }
+
+          function memberCommentArray4() {
+            return ['デザインを考えるようになってから、街中で広告や案内図などの配色、文字の位置などを細かく見るようになってしまい目が疲れています...\r\n', 'contact', getMailATag('kd1331030@st.kobedenshi.ac.jp')];
+          }
+
+          function memberCommentArray5() {
+            return ['contact', getMailATag('kd1330280@st.kobedenshi.ac.jp')];
+          }
+
+          function memberCommentArray6() {
+            return ['Reactを使っての開発は初めてで大変やったけど、自分ができることは頑張りました。お疲れ様でしたー！\r\n', 'contact', getMailATag('kd1316182@st.kobedenshi.ac.jp')];
+          }
+
           const memberCommentArray = [
-            '職種がフロントエンドで、今後の為にwebの勉強したくてreact触ってみたけど難しい。でも楽しいです。', 
-            '好きな猫についてのサービスを、好きなchartJSを使って作れて、優しいメンバー達にも恵まれて、本当に楽しい制作でした！',
-            '劇団のホームページ運営(https://hanami-goya/)してます～。最近はUnity, Blenderで学校の教室(https://0j01001hibiki.github.io/SchoolMetaverse/)作ってみたり、趣味でMMD触ってみたり色々してます～。今回の開発においては、ReactやNode.jsに触れられて面白かった～。猫飼ってはいませんが、好きなので、ちょっと詳しくなれたの嬉しい～',
-            'デザインを考えるようになってから、街中で広告や案内図などの配色、文字の位置などを細かく見るようになってしまい目が疲れています...', 
-            '',
-            '',
+            memberCommentArray1, 
+            memberCommentArray2,
+            memberCommentArray3,
+            memberCommentArray4, 
+            memberCommentArray5,
+            memberCommentArray6,
           ];
           function fa_comment_dots_onClick(e) {
             if(e.target.dataset.member !== null) {
               const memnberIndex = Number(e.target.dataset.member);
               if(memnberIndex !== null && memnberIndex >= 0 && memnberIndex < memberCommentArray.length) {
-                memberDialogContent.textContent = memberCommentArray[memnberIndex];
+                // 要素の削除
+                while( memberDialogContent.firstChild ){
+                  memberDialogContent.removeChild( memberDialogContent.firstChild );
+                }
+                const memberDialogContentElementArray = memberCommentArray[memnberIndex]();
+                for(let i = 0; i < memberDialogContentElementArray.length; i++) {
+                  memberDialogContent.append(memberDialogContentElementArray[i]);
+                }
+                // memberDialogContent.textContent = memberCommentArray[memnberIndex];
               }
               
               memberDialog.classList.toggle('show', true);
@@ -610,16 +964,14 @@
           memberDialog.addEventListener('click', meneppe_member_dialog_onClick);
         </script>
       </section>
-      <!-- <div class="maneppe_spacer"><hr class="maneppe_hr"></div> -->
       <section id="maneppe_tags_section" class="maneppe_content">
         <h2 class="maneppe_content_header">
           <span class="fa-solid fa-tags"></span>
           タグ一覧
         </h2>
         <div class="maneppe_content_inner maneppe_tagArea">
-          <!-- https://digitalworks-it.com/tag/タグ名/ -->
           <script>
-            const tagList = ['HTML5', 'CSS', 'JavaScript', 'PHP','Node.js', 'React', 'Adobe'];
+            const tagList = ['HTML', 'CSS', 'JavaScript', 'PHP','Node.js', 'React', 'Adobe'];
             const tagArea = document.getElementsByClassName('maneppe_tagArea');
             for(let i = 0; i < tagArea.length; i++) {
               for(let j = 0; j < tagList.length; j++) {
@@ -648,7 +1000,6 @@
               display: inline-block;
               margin-right: 5px;
               padding: 0.45rem 0.45rem 0.45rem 0;
-              /*padding: 1px 5px;*/
               font-size: 12px;
               border: 1px solid #999;
               border-radius: 2px;
@@ -666,15 +1017,14 @@
           </style>
         </div>
       </section>
-      <!-- <div class="maneppe_spacer"><hr class="maneppe_hr"></div> -->
+      <div class="maneppe_spacer"></div>
     </main>
-    <div class="maneppe_spacer"></div>
     <footer class="maneppe_footer">
       <div>
-        &copy;team bee
+        &copy;team Bee
       </div>
       <img class="maneppe_footer_icon maneppe_left_icon" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/normal.svg" alt="webサイト、マネッペのビーバーのシルエット" width="170" height="150">
-      <img class="maneppe_footer_icon maneppe_right_icon" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/catAndCoin.svg" alt="webサイト、マネッペのネコのシルエット" width="229" height="150" />
+      <img class="maneppe_footer_icon maneppe_right_icon" src="https://raw.githubusercontent.com/hibiki0147/maneppe/main/images/catAndCoin.svg" alt="webサイト、マネッペのネコのシルエット" width="110.31" height="72.15" />
       <style>
         .maneppe_footer {
           position: relative;
@@ -684,6 +1034,7 @@
           padding: 0.45rem;
           box-sizing: border-box;
           text-align: center;
+          z-index: 1000;
         }
         .maneppe_footer_icon {
           position: absolute;
@@ -814,4 +1165,8 @@
       });
     </script>
   </body>
+  <!-- 
+    何かテキストアート作ろっかな～～
+
+   -->
 </html>
