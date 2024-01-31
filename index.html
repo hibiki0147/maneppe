@@ -225,6 +225,7 @@
             <li><a class="maneppe_page_link" href="#maneppe_WorkIntro_section" data-link="maneppe_WorkIntro_section"><span class="fa-solid fa-chart-pie"></span>作品紹介</a></li>
             <li><a class="maneppe_page_link" href="#maneppe_demoMovie_section" data-link="maneppe_demoMovie_section"><span class="fa-brands fa-youtube"></span>デモ動画</a></li>
             <li><a class="maneppe_page_link" href="#maneppe_presentationSlide_section" data-link="maneppe_presentationSlide_section"><span class="fa-solid fa-folder"></span>発表スライド</a></li>
+            <li><a class="maneppe_page_link" href="#maneppe_comment_section" data-link="maneppe_comment_section"><span class="fa-solid fa-message"></span>開発に関して</a></li>
             <li><a class="maneppe_page_link" href="#maneppe_poster_section" data-link="maneppe_poster_section"><span class="fa-solid fa-flag"></span>ポスター</a></li>
             <li><a class="maneppe_page_link" href="#maneppe_member_section"  data-link="maneppe_member_section"><span class="fa-solid fa-user"></span>メンバー</a></li>
             <li><a class="maneppe_page_link" href="#maneppe_tags_section"  data-link="maneppe_tags_section"><span class="fa-solid fa-tags"></span>タグ一覧</a></li>
@@ -648,6 +649,112 @@
           }
         </style>
       </section>
+
+      <section id="maneppe_comment_section" class="maneppe_content">
+        <h2 class="maneppe_content_header">
+          <span class="fa-solid fa-message"></span>
+          開発に関して
+        </h2>
+        <div class="maneppe_content_inner maneppe_commentArea">
+          <ul class="maneppe_comment_list">
+            <li>
+              <h3>審査員へのアピールポイントの記載</h3>
+              <div>既存のシミュレーションサイトなどは、きっちり数値を入力した後にしか結果を見れないことが多いですが、
+                「気軽に触りたい」
+                「ざっくりとでも良いので費用を知りたい」
+                「結果を見ながら考えたい」
+                などの要望を満たすために、リアルタイムで結果を確認できるようにしました。
+
+                飼う前には、想像もしていなかった苦難もあると思います。
+                そのため、途中で手放してしまいたいと思う飼い主もいます。
+                
+                しかし、個人間での動物の譲渡はまだまだシステムが発展途上です。
+                保護団体が引き取った場合でも、昨今殺処分数が減ってきているとはいえ、体制が万全であるとは言えない状態です。
+                
+                少しでも事前に準備していただき、新たな出会いのお手伝いをできればと思います。
+              </div>
+            </li>
+            <li>
+              <h3>開発で工夫した点</h3>
+              <div>初心者の方でも操作しやすいように、視覚的にわかりやすいデザインにしました。
+
+                また、入力が手間に感じないように、予め平均的な数値や推奨される数値を入力したり、スライドバーやボタン操作でなるべくマウスのみでシミュレーションできるようにしたりと、工夫しております。
+              </div>
+            </li>
+            <li>
+              <h3>開発で苦労した点</h3>
+              <div>入力項目が多いことと、初心者からすれば情報量がどうしても多くなってしまうことに苦労しました。
+
+                サイト内にアンケートを設け、フィードバックをいただきつつ、主に下記の3点の改善を図りました。
+                
+                <span>１点目：「ハンバーガーメニューは初心者にはわかりづらい」と意見をいただきました。</span>
+                ハンバーガーメニューを使ったグローバルメニューを、「マイページ」「アンケート」「ログイン」と最初からリンクを表示するように変更しました。
+
+                ハンバーガーメニューがボタンとして認識してもらいにくかったことを解決し、サイト内で何ができるか、わかりやすくなりました。
+
+
+                <span>２点目：「”？”（ヘルプ）ボタンのポップアップが消せなくてあたふたした」との意見をいただきました。</span>
+                ポップアップを消すためには、ポップアップの外側をクリックする必要がありました。
+                それをカーソルをコンテンツ外に持って行くことにより非表示にできるようにし、元の状態に戻りやすくしました。
+
+
+                <span>３点目：「入力がスライドバーだと大まかにしか設定できない」という意見をいただきました。</span>
+                スライドバーだと100円単位でしか編集ができなかったため、「+」「-」ボタンでの入力や数値を直接入力できるようにしました。
+              </div>
+            </li>
+          </ul>
+        </div>
+        <style>
+          @media screen and (max-width: 600px) {
+            .maneppe_commentArea {
+              margin: 1rem 0;
+            }
+          }
+          .maneppe_comment_list {
+            padding: 0 1rem;
+          }
+          .maneppe_comment_list li {
+            margin: 1.5rem 0;
+          }
+          .maneppe_comment_list li h3 {
+            position: relative;
+            font-weight: bold;
+            font-size: 16pt;
+            color: #353535;
+            margin: 0;
+            z-index: 0;
+          }
+          .maneppe_comment_list li h3::before {
+              position: absolute;
+              left: -1rem;
+              bottom: 0px;
+              width: 100%;
+              height: 0.5rem;
+              transform: skew(-45deg);
+              /*background-image: repeating-linear-gradient(90deg, transparent 0 4px, #b3ddb5 4px 8px);*/
+              content: '';
+              z-index: -1;
+          }
+          .maneppe_comment_list li:nth-child(1) h3::before{
+            background-image: repeating-linear-gradient(90deg, transparent 0 4px, #DEB4C5 4px 8px);
+          }
+          .maneppe_comment_list li:nth-child(2) h3:before{
+            background-image: repeating-linear-gradient(90deg, transparent 0 4px, #b3ddb5 4px 8px);
+          }
+          .maneppe_comment_list li:nth-child(3) h3::before{
+            background-image: repeating-linear-gradient(90deg, transparent 0 4px, #B4C1DE 4px 8px);
+          }
+          .maneppe_comment_list li div {
+            font-size: 14pt;
+            white-space: pre-line;
+            text-wrap:wrap;
+          }
+          .maneppe_comment_list li div span{
+            font-weight:bold;
+          }
+        </style>
+      </section>
+
       <section id="maneppe_poster_section" class="maneppe_content">
         <h2 class="maneppe_content_header">
           <span class="fa-solid fa-flag"></span>
@@ -1171,6 +1278,8 @@
     </script>
   </body>
   <!-- 
-    
+    2024-01-31 
+    created by akamatsu hibiki, terada ibuki
+    Thank you for browsing our website at the details !!!
    -->
 </html>
